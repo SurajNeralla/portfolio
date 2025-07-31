@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraj Neralla - Full Stack Developer Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --accent: #00ffaa;
+            --bg-color: #0a0a0a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #E0E0E0;
+            font-family: 'Fira Code', monospace;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .glassmorphism {
+            background: rgba(10, 10, 10, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .custom-cursor .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+        }
+
+        .custom-cursor .cursor-ring {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        .nav-link-underline {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-link-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-link-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- 3D Matrix Background -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full py-4 px-8 z-50 glassmorphism transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-3xl font-bold gradient-text">[Suraj Neralla]Dev</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="nav-link-underline">Home</a>
+                <a href="#about" class="nav-link-underline">About</a>
+                <a href="#skills" class="nav-link-underline">Skills</a>
+                <a href="#experience" class="nav-link-underline">Experience</a>
+                <a href="#projects" class="nav-link-underline">Projects</a>
+                <a href="#contact" class="nav-link-underline">Contact</a>
+            </div>
+            <button id="hamburger-btn" class="md:hidden text-3xl z-50">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black/90 flex justify-center items-center -translate-x-full transition-transform duration-500 ease-in-out z-40">
+        <div class="flex flex-col text-center space-y-8 text-2xl">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
+            <a href="#experience" class="mobile-nav-link">Experience</a>
+            <a href="#projects" class="mobile-nav-link">Projects</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
+            <div class="z-10 p-8 rounded-lg terminal-box" style="border: 1px solid var(--primary); box-shadow: 0 0 20px var(--primary);">
+                <div class="text-left font-mono">
+                    <p class="text-green-400">> Hello_World()</p>
+                    <h1 class="text-4xl md:text-6xl font-bold my-4">I'm <span class="gradient-text">Suraj Neralla</span>, a Full Stack Developer</h1>
+                    <p class="text-lg md:text-xl text-cyan-300">const specialties = ["HTML", "CSS", "JS", "Node.js"]</p>
+                </div>
+                <div class="mt-8 space-x-4">
+                    <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:opacity-90 transition-opacity">View Projects</a>
+                    <a href="#contact" class="px-6 py-3 border-2 border-accent text-accent font-bold rounded-lg hover:bg-accent hover:text-black transition-colors">Contact Me</a>
+                </div>
+            </div>
+             <a href="#about" class="absolute bottom-10 animate-bounce">
+                <i class="fas fa-chevron-down text-3xl text-accent"></i>
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 container mx-auto px-8">
+             <h2 class="text-5xl font-bold text-center mb-12 gradient-text">About Me</h2>
+             <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="w-full max-w-sm mx-auto">
+                    <img src="img.jpg" alt="Profile Picture" class="rounded-full border-4 border-primary shadow-lg shadow-primary/50">
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-4">I craft digital experiences.</h3>
+                    <p class="mb-4">With over 1 year in full stack development, I specialize in creating dynamic and interactive web applications. My passion lies at the intersection of design and technology, particularly with WebGL and Three.js.</p>
+                    <ul class="mb-6 space-y-2">
+                        <li><strong>Name:</strong> Suraj Neralla</li>
+                        <li><strong>Email:</strong> surajneralla2007@gmail.com</li>
+                        <li><strong>Location:</strong> Vishakapatnam</li>
+                    </ul>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-3xl hover:text-primary transition-colors"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-3xl hover:text-primary transition-colors"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-3xl hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-black/20">
+            <div class="container mx-auto px-8">
+                <h2 class="text-5xl font-bold text-center mb-12 gradient-text">My Arsenal</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Skill Card Example -->
+                    <div class="skill-card p-6 text-center glassmorphism rounded-lg hover:shadow-accent/50 hover:shadow-lg transition-shadow">
+                        <i class="fab fa-react text-5xl text-primary mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">HTML</HTML></h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-2">
+                          <div class="bg-primary h-2.5 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                     <div class="skill-card p-6 text-center glassmorphism rounded-lg hover:shadow-accent/50 hover:shadow-lg transition-shadow">
+                        <i class="fab fa-node-js text-5xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">CSS</h3>
+                    </div>
+                    <div class="skill-card p-6 text-center glassmorphism rounded-lg hover:shadow-accent/50 hover:shadow-lg transition-shadow">
+                        <i class="fas fa-cube text-5xl text-accent mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">C</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mb-2">
+                          <div class="bg-accent h-2.5 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card p-6 text-center glassmorphism rounded-lg hover:shadow-accent/50 hover:shadow-lg transition-shadow">
+                        <i class="fas fa-database text-5xl text-secondary mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Databases</h3>
+                         <div class="w-full bg-gray-700 rounded-full h-2.5 mb-2">
+                          <div class="bg-secondary h-2.5 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+                    <div class="w-5/12"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-black/20">
+            <div class="container mx-auto px-8">
+                <h2 class="text-5xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Project Card Example -->
+                    <div class="project-card glassmorphism rounded-lg overflow-hidden">
+                        <img src="https://source.unsplash.com/random/500x300?technology" alt="Project 1" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Bus Registration</h3>
+                            <p class="mb-4">In This Project a Student Can Register into a bus and Track its Location</p>
+                            <div class="space-x-4">
+                               <a href="#" class="px-4 py-2 bg-primary text-black rounded">Live Demo</a>
+                               <a href="#" class="px-4 py-2 border border-accent text-accent rounded">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="project-card glassmorphism rounded-lg overflow-hidden">
+                        <img src="https://source.unsplash.com/random/500x300?abstract" alt="Project 2" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">WORDLE</h3>
+                            <p class="mb-4">This Website Helps You To Cure Your Boredom</p>
+                            <div class="space-x-4">
+                               <a href="#" class="px-4 py-2 bg-primary text-black rounded">Live Demo</a>
+                               <a href="#" class="px-4 py-2 border border-accent text-accent rounded">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="project-card glassmorphism rounded-lg overflow-hidden">
+                        <img src="https://source.unsplash.com/random/500x300?space" alt="Project 3" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">Restraunt Billing Section</h3>
+                            <p class="mb-4">Here the Computer Calulates and gives us the total bill of the items</p>
+                            <div class="space-x-4">
+                               <a href="#" class="px-4 py-2 bg-primary text-black rounded">Live Demo</a>
+                               <a href="#" class="px-4 py-2 border border-accent text-accent rounded">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 container mx-auto px-8">
+            <h2 class="text-5xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-4">Let's Connect</h3>
+                    <p class="mb-6">Have a project in mind or just want to say hi? Feel free to reach out. I'm always open to discussing new opportunities.</p>
+                    <div class="space-y-4">
+                        <p><i class="fas fa-envelope mr-2 text-primary"></i> [surajneralla2007@gmail.com]</p>
+                        <p><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Vishakapatnam </p>
+                    </div>
+                </div>
+                <form class="space-y-6">
+                    <input type="text" placeholder="Suraj Neralla" class="w-full p-3 bg-gray-800 border-2 border-transparent focus:border-accent outline-none rounded transition-colors">
+                    <input type="email" placeholder="surajneralla2007@gmail.com" class="w-full p-3 bg-gray-800 border-2 border-transparent focus:border-accent outline-none rounded transition-colors">
+                    <input type="text" placeholder="Subject" class="w-full p-3 bg-gray-800 border-2 border-transparent focus:border-accent outline-none rounded transition-colors">
+                    <textarea placeholder="Your Message" rows="5" class="w-full p-3 bg-gray-800 border-2 border-transparent focus:border-accent outline-none rounded transition-colors"></textarea>
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:opacity-90 transition-opacity">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-black/50 text-center">
+        <div class="container mx-auto">
+            <p>© 2025 [Suraj Neralla]Dev. All rights reserved.</p>
+             <div class="flex space-x-4 justify-center mt-4">
+                <a href="#" class="text-xl hover:text-primary transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-xl hover:text-primary transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-xl hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Three.js CDN -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- Three.js Matrix Background ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('matrix-bg'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+        const charCount = 2000;
+        const particles = new THREE.BufferGeometry();
+        const positions = new Float32Array(charCount * 3);
+        
+        const material = new THREE.PointsMaterial({
+            color: 0x00ffaa,
+            size: 0.15,
+            transparent: true,
+            opacity: 0.7,
+            blending: THREE.AdditiveBlending
+        });
+
+        for (let i = 0; i < charCount * 3; i+=3) {
+            positions[i] = (Math.random() - 0.5) * 20;
+            positions[i+1] = (Math.random() - 0.5) * 20;
+            positions[i+2] = (Math.random() - 0.5) * 20;
+        }
+        
+        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleSystem = new THREE.Points(particles, material);
+        scene.add(particleSystem);
+        
+        camera.position.z = 5;
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            particleSystem.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        };
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- GSAP Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+
+        gsap.set(cursorDot, { xPercent: -50, yPercent: -50 });
+        gsap.set(cursorRing, { xPercent: -50, yPercent: -50 });
+
+        window.addEventListener('mousemove', e => {
+            gsap.to(cursorDot, 0.1, { x: e.clientX, y: e.clientY });
+            gsap.to(cursorRing, 0.3, { x: e.clientX, y: e.clientY });
+        });
+
+        // Mobile Nav
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('-translate-x-full');
+            hamburgerBtn.querySelector('i').classList.toggle('fa-bars');
+            hamburgerBtn.querySelector('i').classList.toggle('fa-times');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+                hamburgerBtn.querySelector('i').classList.add('fa-bars');
+                hamburgerBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Hero Section Animation
+        gsap.from('.terminal-box', { duration: 1.5, y: -50, opacity: 0, ease: 'power3.out', delay: 0.5 });
+        
+        // Section Animations on Scroll
+        const sections = document.querySelectorAll('section:not(#home)');
+        sections.forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse',
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        // Skills Cards Animation
+        gsap.from('.skill-card', {
+            scrollTrigger: {
+                trigger: '#skills',
+                start: 'top 70%',
+            },
+            opacity: 0,
+            y: 30,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'back.out(1.7)'
+        });
+
+        // Experience Timeline Animation
+        gsap.utils.toArray('.timeline-item').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%',
+                },
+                opacity: 0,
+                x: item.classList.contains('flex-row-reverse') ? 100 : -100,
+                duration: 1,
+            });
+        });
+        
+         // Project Cards Animation
+        gsap.from('.project-card', {
+            scrollTrigger: {
+                trigger: '#projects',
+                start: 'top 70%',
+            },
+            opacity: 0,
+            scale: 0.8,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'elastic.out(1, 0.75)'
+        });
+
+    </script>
+</body>
+</html>
